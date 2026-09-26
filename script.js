@@ -1,5 +1,7 @@
 (function () {
-  const links = Array.from(document.querySelectorAll(".section-nav a"));
+  const links = Array.from(document.querySelectorAll(".section-nav a")).filter((link) =>
+    link.getAttribute("href")?.startsWith("#")
+  );
   const sections = links
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
