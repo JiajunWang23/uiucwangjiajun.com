@@ -120,8 +120,7 @@ p {
 .page-section h2,
 .project-card h3,
 .timeline-item h3,
-.education-block h3,
-.github-strip h3 {
+.education-block h3 {
   margin: 0;
   line-height: 1.18;
   letter-spacing: 0;
@@ -169,8 +168,7 @@ p {
   gap: 8px;
 }
 
-.contact-links a,
-.button-link {
+.contact-links a {
   display: inline-flex;
   min-height: 40px;
   align-items: center;
@@ -184,8 +182,7 @@ p {
   font-weight: 800;
 }
 
-.contact-links a:hover,
-.button-link:hover {
+.contact-links a:hover {
   border-color: rgba(15, 118, 110, 0.42);
   background: rgba(15, 118, 110, 0.08);
 }
@@ -523,48 +520,6 @@ p {
   font-weight: 900;
 }
 
-.github-strip {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 18px;
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.72);
-}
-
-.github-strip h3 {
-  font-size: 1.04rem;
-}
-
-.repo-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.repo-card {
-  display: grid;
-  gap: 8px;
-  min-height: 120px;
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #ffffff;
-}
-
-.repo-card strong {
-  color: var(--ink);
-}
-
-.repo-card span {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
 .education-block article {
   padding: 20px;
 }
@@ -797,7 +752,6 @@ p {
   .interest-grid article,
   .project-card,
   .education-block article,
-  .github-strip,
   .blog-hero,
   .blog-card,
   .blog-article {
@@ -825,8 +779,7 @@ p {
 
   .section-nav,
   .interest-grid,
-  .project-grid,
-  .repo-list {
+  .project-grid {
     grid-template-columns: 1fr;
   }
 
@@ -835,8 +788,7 @@ p {
     gap: 4px;
   }
 
-  .project-topline,
-  .github-strip {
+  .project-topline {
     align-items: flex-start;
     flex-direction: column;
   }
