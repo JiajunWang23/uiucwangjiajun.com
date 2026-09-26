@@ -1,4 +1,4 @@
-# Eloise (Jiajun) Wang
+# Jiajun Wang
 
 Personal portfolio website for `uiucwangjiajun.com`.
 
