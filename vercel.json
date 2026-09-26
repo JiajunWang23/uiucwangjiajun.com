@@ -1,4 +1,21 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/blog/post/:slug",
+      "destination": "/blog/posts/:slug",
+      "permanent": false
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/blog/posts/:slug",
+      "permanent": false
+    },
+    {
+      "source": "/posts/:slug",
+      "destination": "/blog/posts/:slug",
+      "permanent": false
+    }
+  ]
 }
