@@ -520,6 +520,17 @@ p {
   font-weight: 900;
 }
 
+.project-link {
+  align-self: end;
+  color: var(--teal);
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.project-link:hover {
+  color: var(--coral);
+}
+
 .education-block article {
   padding: 20px;
 }
