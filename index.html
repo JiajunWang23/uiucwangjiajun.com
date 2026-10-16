@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=20261016g">
+    <link rel="stylesheet" href="./styles.css?v=20261016h">
   </head>
   <body>
     <a class="skip-link" href="#about">Skip to content</a>
@@ -163,10 +163,9 @@
             <span>Message</span>
             <textarea name="message" rows="5" required maxlength="4000" placeholder="A bit of context, and a few times that work for you if it's a chat."></textarea>
           </label>
-          <label class="field-trap" aria-hidden="true">
-            Leave this empty
-            <input name="website" type="text" tabindex="-1" autocomplete="off">
-          </label>
+          <div class="field-trap" aria-hidden="true">
+            <input name="website" type="text" tabindex="-1" autocomplete="off" aria-label="Website">
+          </div>
           <div class="form-footer">
             <button class="button button-primary" type="submit" id="contact-submit">Send message</button>
             <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
@@ -180,6 +179,6 @@
       <span id="footer-updated"></span>
     </footer>
 
-    <script src="./script.js?v=20261016g"></script>
+    <script src="./script.js?v=20261016h"></script>
   </body>
 </html>
