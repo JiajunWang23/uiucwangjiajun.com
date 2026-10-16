@@ -178,6 +178,7 @@ const siteData = {
           description:
             "Python NLP pipeline analyzing 1K+ job postings to extract skill gaps between media industry needs and university training.",
           tags: ["Python", "NLP", "Data Analysis", "Preprocessing"],
+          href: "https://github.com/JiajunWang23/media-talent-analysis",
         },
       ],
     },
