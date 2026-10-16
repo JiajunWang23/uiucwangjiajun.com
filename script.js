@@ -4,7 +4,7 @@
 
 // Google Apps Script web-app URL that appends contact-form submissions to a Google Sheet.
 // See contact-form/README.md for setup. Leave empty to show the LinkedIn fallback message.
-const CONTACT_ENDPOINT = "";
+const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbwcsVvUb77HvcbJWkMH2geqa-35pisxfdAbQ5MmvZB1NCNQnnbOMIa7qeES0eqLBxh6yg/exec";
 
 const siteData = {
   heroName: "Jiajun Wang",
