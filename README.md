@@ -16,6 +16,7 @@ Static site — no build step. Deploy directly on Vercel.
 - `index.html` — single-page layout with a sticky nav (About / Experience / Projects / Blog / Contact) and scroll-spy. Blog is a regular link to `/blog`.
 - `script.js` — **all site content lives in the `siteData` object at the top** (hero, education, experience, projects, contact cards). Edit there; the HTML renders from it.
 - `styles.css` — light-blue glass theme (palette lives in the `:root` variables at the top), shared by the home page and `blog/`.
+- `contact-form/` — Google Apps Script that saves contact-form messages to a Google Sheet. Setup: [`contact-form/README.md`](contact-form/README.md). The endpoint URL goes in `CONTACT_ENDPOINT` at the top of `script.js`.
 - `assets/` — portrait (`avatar.jpg`, also used as header mark and favicon) and school / company logos.
 
 ## Editing tips
