@@ -140,10 +140,26 @@ const siteData = {
       copy: "Products and agents that put LLMs to work on real user problems.",
       projects: [
         {
+          title: "Stateful AI Agent Platform",
+          coverLabel: "AI Agents",
+          status: "completed",
+          cover: "mint",
+          description:
+            "Production-style agent runtime: a bounded LangGraph ReAct loop with persistent checkpoints, a streaming React UI over multiplexed WebSockets, and MCP-exposed admin tools gated by SpiceDB.",
+          highlights: [
+            "Built a LangGraph agent runtime with a bounded ReAct loop for multi-step tool calls, capped at a 10-iteration limit to control usage.",
+            "Implemented persistent state checkpoints across 5 workflow stages, enabling interrupted workflows to resume from saved progress.",
+            "Developed a React streaming UI over multiplexed WebSockets, supporting 50 concurrent sessions with p95 token delivery under 200ms.",
+            "Exposed 22 administrative tools through MCP, propagating caller context into SpiceDB checks to enforce least-privilege access.",
+          ],
+          tags: ["LangGraph", "React", "WebSockets", "MCP", "SpiceDB"],
+          href: "https://github.com/JiajunWang23/stateful-agent-platform",
+        },
+        {
           title: "PushResume",
           coverLabel: "AI Tools",
           status: "completed",
-          cover: "mint",
+          cover: "violet",
           description:
             "Free AI-powered resume review and parsing web app that helps candidates improve applications with clearer feedback and faster iteration.",
           tags: ["AI", "Resume Parsing", "Web App", "Product"],
@@ -153,7 +169,7 @@ const siteData = {
           title: "Media Talent Analysis",
           coverLabel: "NLP",
           status: "completed",
-          cover: "violet",
+          cover: "coral",
           description:
             "Python NLP pipeline analyzing 1K+ job postings to extract skill gaps between media industry needs and university training.",
           tags: ["Python", "NLP", "Data Analysis", "Preprocessing"],
@@ -183,22 +199,6 @@ const siteData = {
           description:
             "Scalable event-driven platform exposing GraphQL APIs over Kafka streams, MongoDB metadata, and automated CI/CD deployment.",
           tags: ["Java", "Spring Boot", "Kafka", "MongoDB", "GraphQL", "Jenkins"],
-        },
-      ],
-    },
-    {
-      id: "apps",
-      title: "Applications",
-      copy: "End-to-end products with secure APIs and a polished front end.",
-      projects: [
-        {
-          title: "Professor Ratings App",
-          coverLabel: "Mobile",
-          status: "completed",
-          cover: "coral",
-          description:
-            "Android application for UIUC students to search, view, rate, and comment on professor profiles with secure REST APIs.",
-          tags: ["Java", "SQL", "REST API", "Android"],
         },
       ],
     },
@@ -472,7 +472,7 @@ const renderProjects = () => {
       const tag = project.href ? "a" : "article";
       const linkAttributes = project.href ? ` href="${project.href}" target="_blank" rel="noreferrer"` : "";
       return `
-        <${tag} class="project-card project-card--${project.cover || "blue"}" data-category="${project.categoryId}"${linkAttributes}>
+        <${tag} class="project-card project-card--${project.cover || "blue"}${project.highlights ? " project-card--featured" : ""}" data-category="${project.categoryId}"${linkAttributes}>
           <div class="project-topline">
             <span class="project-index">${String(index + 1).padStart(2, "0")}</span>
             <span class="project-category">${project.categoryTitle}</span>
@@ -480,6 +480,11 @@ const renderProjects = () => {
           </div>
           <h3>${pick(project.title)}</h3>
           <p>${pick(project.description)}</p>
+          ${
+            project.highlights
+              ? `<ul class="project-highlights">${project.highlights.map((h) => `<li>${h}</li>`).join("")}</ul>`
+              : ""
+          }
           <div class="project-footer">
             <div class="tag-list">${project.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
             ${project.href ? `<span class="project-open" aria-hidden="true">↗</span>` : ""}
