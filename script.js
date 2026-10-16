@@ -4,6 +4,8 @@
 
 const siteData = {
   heroName: "Jiajun Wang",
+  heroEyebrow: "Software Engineer · Backend, Cloud & AI Tools",
+  heroStatement: "I build backend systems where data, cloud infrastructure, and intelligent tools meet.",
   heroSubtitle: "B.S. in Statistics & Computer Science @ UIUC",
   heroSubtitleHref: "https://stat.illinois.edu/",
   heroLocation: "Chicago, IL",
@@ -231,11 +233,11 @@ const siteChrome = {
   metaDescription:
     "Jiajun Wang - software engineer focused on backend systems, cloud infrastructure, real-time data, and AI-powered tools.",
   nav: { home: "Home", experience: "Experience", projects: "Projects", blog: "Blog", contact: "Contact" },
-  aboutHeading: "About Me",
+  aboutHeading: "About",
   educationHeading: "Education",
-  experienceHeading: "Industry Experience",
+  experienceHeading: "Experience",
   interestsHeading: "Technical Interests",
-  projectsHeading: "Selected Projects",
+  projectsHeading: "Projects",
   contactHeading: "Connect, coffee chats, and potential opportunities.",
   contactCopy:
     "If you'd like to connect, you can set up a conversation, request my resume privately, or follow up by email or social media.",
@@ -322,6 +324,8 @@ const renderShellText = () => {
 
 const renderHero = () => {
   setText("hero-name", pick(siteData.heroName));
+  setText("hero-eyebrow", pick(siteData.heroEyebrow));
+  setText("hero-statement", pick(siteData.heroStatement));
 
   const subtitle = document.getElementById("hero-subtitle");
   if (subtitle) {
@@ -335,16 +339,22 @@ const renderHero = () => {
 
   const location = document.getElementById("hero-location");
   if (location) {
-    location.innerHTML = `<span class="hero-location-icon">${iconMarkup.location}</span><span>${pick(siteData.heroLocation)}</span>`;
+    location.innerHTML = `<span class="hero-location-icon">${iconMarkup.location}</span>${pick(siteData.heroLocation)}`;
   }
 
   renderList(
     siteData.industryExperience,
-    (item) => `
-      <article class="industry-entry">
-        ${item.href ? `<a class="industry-logo-link" href="${item.href}" target="_blank" rel="noreferrer" aria-label="${pick(item.company)}">${markBadge(item, "industry-logo")}</a>` : markBadge(item, "industry-logo")}
-        <p><strong>${item.href ? `<a href="${item.href}" target="_blank" rel="noreferrer">${pick(item.company)}</a>` : pick(item.company)}</strong><span aria-hidden="true"> / </span><span>${pick(item.role)}</span></p>
-      </article>`,
+    (item) => {
+      const inner = `
+        ${markBadge(item, "recent-logo")}
+        <span class="recent-copy">
+          <strong>${pick(item.company)}</strong>
+          <span>${pick(item.role)}</span>
+        </span>`;
+      return item.href
+        ? `<a class="recent-item" href="${item.href}" target="_blank" rel="noreferrer">${inner}</a>`
+        : `<div class="recent-item">${inner}</div>`;
+    },
     "hero-industry-list",
   );
 
@@ -406,30 +416,31 @@ const renderExperience = () => {
   renderList(
     siteData.experience,
     (item) => `
-      <article class="timeline-item">
-        <div class="stack-item-header">
-          <div>
-            <p class="timeline-date">${pick(item.period)}</p>
-            <h3>${pick(item.role)}</h3>
-            <p class="stack-item-meta">${pick(item.company)}</p>
-          </div>
+      <article class="experience-item">
+        <div class="experience-when">
+          <p class="experience-period">${pick(item.period)}</p>
         </div>
-        <ul class="timeline-bullets">
-          ${pick(item.bullets)
-            .map((bullet) => `<li>${bullet}</li>`)
-            .join("")}
-        </ul>
-        <div class="tag-list">${item.stack.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+        <div class="experience-body">
+          <h3>${pick(item.role)}</h3>
+          <p class="experience-company">${pick(item.company)}</p>
+          <ul class="experience-bullets">
+            ${pick(item.bullets)
+              .map((bullet) => `<li>${bullet}</li>`)
+              .join("")}
+          </ul>
+          <div class="tag-list">${item.stack.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+        </div>
       </article>`,
     "experience-list",
   );
 
   renderList(
     siteData.interests,
-    (item) => `
-      <article class="capability-card">
+    (item, index) => `
+      <article class="focus-card">
+        <span class="focus-index">0${index + 1}</span>
         <h3>${pick(item.title)}</h3>
-        <p class="section-copy">${pick(item.body)}</p>
+        <p>${pick(item.body)}</p>
       </article>`,
     "interests-grid",
   );
@@ -437,62 +448,60 @@ const renderExperience = () => {
 
 const renderProjects = () => {
   const chrome = getChrome();
+  const categories = siteData.projectCategories;
 
   renderList(
-    siteData.projectCategories,
-    (category) => `
-      <button class="project-nav-pill" type="button" data-category-target="category-${category.id}">
+    [{ id: "all", title: "All" }, ...categories],
+    (category, index) => `
+      <button class="filter-pill${index === 0 ? " is-active" : ""}" type="button" role="tab"
+        aria-selected="${index === 0}" data-filter="${category.id}">
         ${pick(category.title)}
       </button>`,
     "projects-nav",
   );
 
+  const projects = categories.flatMap((category) =>
+    category.projects.map((project) => ({ ...project, categoryId: category.id, categoryTitle: pick(category.title) })),
+  );
+
   renderList(
-    siteData.projectCategories,
-    (category) => `
-      <section class="project-category-block" id="category-${category.id}">
-        <div class="section-heading project-category-heading">
-          <div>
-            <h2>${pick(category.title)}</h2>
-            <p class="section-copy">${pick(category.copy)}</p>
+    projects,
+    (project, index) => {
+      const statusClass = project.status === "progress" ? "is-progress" : "is-completed";
+      const statusLabel = project.status === "progress" ? chrome.statusProgress : chrome.statusCompleted;
+      const tag = project.href ? "a" : "article";
+      const linkAttributes = project.href ? ` href="${project.href}" target="_blank" rel="noreferrer"` : "";
+      return `
+        <${tag} class="project-card project-card--${project.cover || "blue"}" data-category="${project.categoryId}"${linkAttributes}>
+          <div class="project-topline">
+            <span class="project-index">${String(index + 1).padStart(2, "0")}</span>
+            <span class="project-category">${project.categoryTitle}</span>
+            <span class="project-status ${statusClass}">${statusLabel}</span>
           </div>
-        </div>
-        <div class="project-grid">
-          ${category.projects
-            .map((project) => {
-              const statusClass =
-                project.status === "progress"
-                  ? "project-status-pill--progress"
-                  : "project-status-pill--completed";
-              const statusLabel =
-                project.status === "progress" ? chrome.statusProgress : chrome.statusCompleted;
-              const tag = project.href ? "a" : "article";
-              const linkAttributes = project.href
-                ? ` href="${project.href}" target="_blank" rel="noreferrer"`
-                : "";
-              return `
-                <${tag} class="project-card project-card-link project-cover--light-text"${linkAttributes}>
-                  <div class="project-cover">
-                    <div class="project-cover-image project-cover-image--${project.cover || "blue"}"></div>
-                    <span class="project-cover-label">${pick(project.coverLabel)}</span>
-                    <span class="project-status-pill ${statusClass}">${statusLabel}</span>
-                  </div>
-                  <h3>${pick(project.title)}</h3>
-                  <p>${pick(project.description)}</p>
-                  <div class="tag-list">${project.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
-                  ${project.href ? `<span class="project-open">${chrome.openProject} →</span>` : ""}
-                </${tag}>`;
-            })
-            .join("")}
-        </div>
-      </section>`,
+          <h3>${pick(project.title)}</h3>
+          <p>${pick(project.description)}</p>
+          <div class="project-footer">
+            <div class="tag-list">${project.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+            ${project.href ? `<span class="project-open" aria-hidden="true">↗</span>` : ""}
+          </div>
+        </${tag}>`;
+    },
     "projects-categories",
   );
 
-  document.querySelectorAll("[data-category-target]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const target = document.getElementById(button.dataset.categoryTarget);
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  const pills = document.querySelectorAll("[data-filter]");
+  const cards = document.querySelectorAll(".project-card[data-category]");
+  pills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      const filter = pill.dataset.filter;
+      pills.forEach((other) => {
+        const active = other === pill;
+        other.classList.toggle("is-active", active);
+        other.setAttribute("aria-selected", String(active));
+      });
+      cards.forEach((card) => {
+        card.classList.toggle("is-hidden", filter !== "all" && card.dataset.category !== filter);
+      });
     });
   });
 };
@@ -530,7 +539,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 const setupMotion = () => {
   document.body.classList.toggle("motion-ready", !prefersReducedMotion.matches);
 
-  document.querySelectorAll(".project-card-link, .contact-action-card").forEach((card) => {
+  document.querySelectorAll(".contact-action-card").forEach((card) => {
     if (card.dataset.motionBound) return;
     card.dataset.motionBound = "true";
 
@@ -557,30 +566,38 @@ const setupMotion = () => {
 };
 
 /* ------------------------------------------------------------------
-   Hash-based views
+   Scroll spy for the sticky nav
 ------------------------------------------------------------------- */
 
-const views = ["home", "experience", "projects", "contact"];
-const panels = document.querySelectorAll("[data-view]");
-const navLinks = document.querySelectorAll("[data-view-link]");
+const navLinks = document.querySelectorAll("[data-section-link]");
+const spiedSections = Array.from(navLinks)
+  .map((link) => document.getElementById(link.dataset.sectionLink))
+  .filter(Boolean);
 
-const activateView = (viewName) => {
-  const activeView = views.includes(viewName) ? viewName : "home";
-  panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.view === activeView));
-  navLinks.forEach((link) => link.classList.toggle("is-active", link.dataset.viewLink === activeView));
-  window.scrollTo({ top: 0, behavior: "auto" });
-  // The browser may still jump to the hash target after this runs; pull back to the top.
-  requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "auto" }));
+const setActiveSection = (id) => {
+  navLinks.forEach((link) => link.classList.toggle("is-active", link.dataset.sectionLink === id));
 };
 
-const syncViewFromHash = () => {
-  const hash = window.location.hash.replace("#", "");
-  activateView(hash || "home");
-};
+if ("IntersectionObserver" in window && spiedSections.length) {
+  const visible = new Map();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => visible.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0));
+      const best = spiedSections
+        .map((section) => [section.id, visible.get(section.id) || 0])
+        .sort((a, b) => b[1] - a[1])[0];
+      setActiveSection(best && best[1] > 0 ? best[0] : "");
+    },
+    { rootMargin: "-35% 0px -55% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] },
+  );
+  spiedSections.forEach((section) => observer.observe(section));
+}
+
+const header = document.querySelector(".site-header");
+const onScroll = () => header && header.classList.toggle("is-scrolled", window.scrollY > 12);
+window.addEventListener("scroll", onScroll, { passive: true });
 
 renderSite();
 setupMotion();
-syncViewFromHash();
-
-window.addEventListener("hashchange", syncViewFromHash);
+onScroll();
 prefersReducedMotion.addEventListener("change", setupMotion);

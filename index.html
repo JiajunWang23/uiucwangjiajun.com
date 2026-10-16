@@ -7,7 +7,7 @@
       name="description"
       content="Jiajun Wang - software engineer focused on backend systems, cloud infrastructure, real-time data, and AI-powered tools."
     >
-    <meta name="theme-color" content="#eef6ff">
+    <meta name="theme-color" content="#f3f8ff">
     <link rel="canonical" href="https://uiucwangjiajun.com">
     <meta property="og:title" content="Jiajun Wang | Software Engineer">
     <meta property="og:description" content="Software engineer focused on backend systems, cloud infrastructure, real-time analytics, and AI-powered tools.">
@@ -15,123 +15,131 @@
     <meta property="og:type" content="website">
     <title>Jiajun Wang | Software Engineer</title>
     <link rel="icon" type="image/jpeg" href="./assets/avatar.jpg">
-    <link rel="stylesheet" href="./styles.css?v=20261015">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=20261015b">
   </head>
   <body>
-    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="skip-link" href="#about">Skip to content</a>
 
-    <div class="page-shell">
-      <div class="ambient ambient-left"></div>
-      <div class="ambient ambient-right"></div>
-
-      <header class="site-header">
-        <a class="brand" href="#home">
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="#top">
           <img class="brand-mark" src="./assets/avatar.jpg" alt="">
           <span class="brand-text">Jiajun Wang</span>
         </a>
 
-        <div class="site-header-actions">
-          <nav class="site-nav" aria-label="Primary">
-            <a href="#home" data-view-link="home" id="nav-home">Home</a>
-            <a href="#experience" data-view-link="experience" id="nav-experience">Experience</a>
-            <a href="#projects" data-view-link="projects" id="nav-projects">Projects</a>
-            <a href="/blog" id="nav-blog">Blog</a>
-            <a href="#contact" data-view-link="contact" id="nav-contact">Contact</a>
-          </nav>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="#about" data-section-link="about"><span class="nav-index">01</span>About</a>
+          <a href="#experience" data-section-link="experience"><span class="nav-index">02</span>Experience</a>
+          <a href="#projects" data-section-link="projects"><span class="nav-index">03</span>Projects</a>
+          <a href="/blog"><span class="nav-index">04</span>Blog</a>
+          <a href="#contact" data-section-link="contact"><span class="nav-index">05</span>Contact</a>
+        </nav>
+
+        <a class="button button-small" href="mailto:uiucwangjiajun@gmail.com">Say hi</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" aria-label="Introduction">
+        <div class="hero-copy">
+          <p class="eyebrow" id="hero-eyebrow"></p>
+          <h1 id="hero-name"></h1>
+          <p class="hero-statement" id="hero-statement"></p>
+          <p class="hero-meta">
+            <a class="hero-subtitle-link" id="hero-subtitle"></a>
+            <span class="hero-meta-divider" aria-hidden="true">·</span>
+            <span class="hero-location" id="hero-location"></span>
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">See projects</a>
+            <a class="button button-secondary" href="#contact">Get in touch</a>
+          </div>
+          <div class="hero-link-row" id="hero-link-row"></div>
         </div>
-      </header>
 
-      <main id="top" class="view-stage">
-        <!-- HOME -->
-        <section class="view-panel is-active" data-view="home">
-          <div class="home-overview">
-            <div class="hero home-hero">
-              <div class="hero-stage glass">
-                <div class="portrait-shell">
-                  <div class="portrait-ring">
-                    <img id="hero-portrait-image" class="portrait-image" alt="Portrait of Jiajun Wang">
-                    <div id="hero-portrait-fallback" class="portrait-fallback">JW</div>
-                  </div>
-                </div>
-
-                <div class="intro-card">
-                  <h1 id="hero-name"></h1>
-                  <a class="hero-subtitle hero-subtitle-link" id="hero-subtitle"></a>
-                  <p class="hero-location" id="hero-location"></p>
-                  <div class="hero-industry-list" id="hero-industry-list"></div>
-                  <div class="hero-link-row" id="hero-link-row"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="home-about">
-              <h2 id="about-heading">About Me</h2>
-              <div id="home-intro-content" class="home-about-prose section-tight"></div>
-              <section class="education-section" aria-labelledby="education-heading">
-                <h3 id="education-heading">Education</h3>
-                <div class="education-list" id="education-list"></div>
-              </section>
-              <div id="home-about-content" class="home-about-prose section-tight"></div>
-              <div class="tool-pills section-tight" id="home-skills" aria-label="Technical skills"></div>
-            </div>
+        <div class="hero-visual">
+          <div class="portrait-frame">
+            <img id="hero-portrait-image" class="portrait-image" alt="Portrait of Jiajun Wang">
+            <div id="hero-portrait-fallback" class="portrait-fallback">JW</div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- EXPERIENCE -->
-        <section class="view-panel" data-view="experience">
-          <div class="section-heading experience-section-header">
-            <div>
-              <h2 id="experience-heading">Industry Experience</h2>
+      <section class="recent-strip" aria-label="Recent experience">
+        <p class="recent-strip-label">Recently at</p>
+        <div class="recent-strip-list" id="hero-industry-list"></div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="page-section" aria-labelledby="about-heading">
+        <div class="section-header">
+          <span class="section-index">01</span>
+          <h2 id="about-heading">About</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-prose">
+            <div id="home-intro-content"></div>
+            <div id="home-about-content"></div>
+          </div>
+          <aside class="about-side">
+            <div class="side-card">
+              <h3 id="education-heading">Education</h3>
+              <div class="education-list" id="education-list"></div>
             </div>
-          </div>
-          <div class="project-section-intro">
-            <p id="experience-intro"></p>
-          </div>
-          <div class="timeline section-tight" id="experience-list"></div>
-
-          <div class="section-heading section-offset">
-            <div>
-              <h2 id="interests-heading">Technical Interests</h2>
+            <div class="side-card">
+              <h3>Toolbox</h3>
+              <div class="tool-pills" id="home-skills" aria-label="Technical skills"></div>
             </div>
-          </div>
-          <div class="capability-grid section-tight" id="interests-grid"></div>
-        </section>
+          </aside>
+        </div>
+        <div class="focus-grid" id="interests-grid"></div>
+      </section>
 
-        <!-- PROJECTS -->
-        <section class="view-panel" data-view="projects">
-          <div class="section-heading project-section-header">
-            <div>
-              <h2 id="projects-heading">Selected Projects</h2>
-            </div>
-          </div>
-          <div class="project-section-intro">
-            <p id="projects-intro"></p>
-          </div>
-          <div class="projects-nav section-tight" id="projects-nav"></div>
-          <div class="projects-categories section-offset" id="projects-categories"></div>
-        </section>
+      <!-- EXPERIENCE -->
+      <section id="experience" class="page-section" aria-labelledby="experience-heading">
+        <div class="section-header">
+          <span class="section-index">02</span>
+          <h2 id="experience-heading">Experience</h2>
+          <p class="section-lede" id="experience-intro"></p>
+        </div>
+        <div class="experience-list" id="experience-list"></div>
+      </section>
 
-        <!-- CONTACT -->
-        <section class="view-panel" data-view="contact">
-          <div class="contact-section glass">
-            <div class="contact-copy">
-              <h2 id="contact-heading"></h2>
-              <p class="section-copy" id="contact-copy"></p>
-            </div>
-            <div class="contact-actions">
-              <div class="contact-booking-grid" id="contact-booking"></div>
-              <div class="hero-link-row contact-link-row" id="contact-links"></div>
-            </div>
-          </div>
-        </section>
-      </main>
+      <!-- PROJECTS -->
+      <section id="projects" class="page-section" aria-labelledby="projects-heading">
+        <div class="section-header">
+          <span class="section-index">03</span>
+          <h2 id="projects-heading">Projects</h2>
+          <p class="section-lede" id="projects-intro"></p>
+        </div>
+        <div class="projects-filter" id="projects-nav" role="tablist" aria-label="Project categories"></div>
+        <div class="project-grid" id="projects-categories"></div>
+      </section>
 
-      <footer class="site-footer">
-        <span>&copy; 2026 Jiajun Wang</span>
-        <span id="footer-updated"></span>
-      </footer>
-    </div>
+      <!-- CONTACT -->
+      <section id="contact" class="page-section contact" aria-labelledby="contact-heading">
+        <div class="section-header">
+          <span class="section-index">05</span>
+          <h2 id="contact-heading"></h2>
+          <p class="section-lede" id="contact-copy"></p>
+          <a class="contact-email" href="mailto:uiucwangjiajun@gmail.com">uiucwangjiajun@gmail.com</a>
+        </div>
+        <div class="contact-actions">
+          <div class="contact-booking-grid" id="contact-booking"></div>
+          <div class="hero-link-row contact-link-row" id="contact-links"></div>
+        </div>
+      </section>
+    </main>
 
-    <script src="./script.js?v=20261015"></script>
+    <footer class="site-footer">
+      <span>&copy; 2026 Jiajun Wang</span>
+      <span id="footer-updated"></span>
+    </footer>
+
+    <script src="./script.js?v=20261015b"></script>
   </body>
 </html>
