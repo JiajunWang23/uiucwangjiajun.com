@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=20261016c">
+    <link rel="stylesheet" href="./styles.css?v=20261016e">
   </head>
   <body>
     <a class="skip-link" href="#about">Skip to content</a>
@@ -38,7 +38,7 @@
           <a href="#contact" data-section-link="contact"><span class="nav-index">05</span>Contact</a>
         </nav>
 
-        <a class="button button-small" href="mailto:uiucwangjiajun@gmail.com">Say hi</a>
+        <a class="button button-small" href="#contact">Say hi</a>
       </div>
     </header>
 
@@ -122,16 +122,56 @@
 
       <!-- CONTACT -->
       <section id="contact" class="page-section contact" aria-labelledby="contact-heading">
-        <div class="section-header">
-          <span class="section-index">05</span>
-          <h2 id="contact-heading"></h2>
-          <p class="section-lede" id="contact-copy"></p>
-          <a class="contact-email" href="mailto:uiucwangjiajun@gmail.com">uiucwangjiajun@gmail.com</a>
-        </div>
-        <div class="contact-actions">
+        <div class="contact-intro">
+          <div class="section-header">
+            <span class="section-index">05</span>
+            <h2 id="contact-heading"></h2>
+            <p class="section-lede" id="contact-copy"></p>
+          </div>
           <div class="contact-booking-grid" id="contact-booking"></div>
           <div class="hero-link-row contact-link-row" id="contact-links"></div>
         </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <label class="field">
+              <span>Name</span>
+              <input name="name" type="text" autocomplete="name" required maxlength="120">
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input name="email" type="email" autocomplete="email" required maxlength="200">
+            </label>
+          </div>
+          <div class="form-row">
+            <label class="field">
+              <span>Company / school <em>optional</em></span>
+              <input name="organization" type="text" autocomplete="organization" maxlength="160">
+            </label>
+            <label class="field">
+              <span>Topic</span>
+              <select name="topic" id="contact-topic" required>
+                <option value="Coffee chat">Coffee chat</option>
+                <option value="Resume request">Resume request</option>
+                <option value="Job opportunity">Job opportunity</option>
+                <option value="Collaboration">Collaboration</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+          </div>
+          <label class="field">
+            <span>Message</span>
+            <textarea name="message" rows="5" required maxlength="4000" placeholder="A bit of context, and a few times that work for you if it's a chat."></textarea>
+          </label>
+          <label class="field-trap" aria-hidden="true">
+            Leave this empty
+            <input name="website" type="text" tabindex="-1" autocomplete="off">
+          </label>
+          <div class="form-footer">
+            <button class="button button-primary" type="submit" id="contact-submit">Send message</button>
+            <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
       </section>
     </main>
 
@@ -140,6 +180,6 @@
       <span id="footer-updated"></span>
     </footer>
 
-    <script src="./script.js?v=20261016c"></script>
+    <script src="./script.js?v=20261016e"></script>
   </body>
 </html>

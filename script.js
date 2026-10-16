@@ -2,6 +2,10 @@
    Site content. Edit the objects below to update the page.
 ------------------------------------------------------------------- */
 
+// Google Apps Script web-app URL that appends contact-form submissions to a Google Sheet.
+// See contact-form/README.md for setup. Leave empty to show the LinkedIn fallback message.
+const CONTACT_ENDPOINT = "";
+
 const siteData = {
   heroName: "Jiajun Wang",
   heroEyebrow: "Software Engineer · Backend, Cloud & AI Tools",
@@ -16,7 +20,6 @@ const siteData = {
   heroLinks: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/jiajun-w-814867365/", icon: "linkedin" },
     { label: "GitHub", href: "https://github.com/JiajunWang23", icon: "github" },
-    { label: "Email", href: "mailto:uiucwangjiajun@gmail.com", icon: "email" },
   ],
   industryExperience: [
     {
@@ -231,21 +234,20 @@ const siteData = {
   contactBooking: [
     {
       label: "Schedule a Coffee Chat",
-      detail: "Email me a few time slots and I will confirm a 30-minute conversation.",
-      href: "mailto:uiucwangjiajun@gmail.com?subject=Coffee%20Chat&body=Hi%20Jiajun%2C%0A%0AI%27d%20love%20to%20schedule%20a%20coffee%20chat.%20Here%20are%20a%20few%20times%20that%20work%20for%20me%3A%0A%0AThanks%21",
+      detail: "Pick this topic in the form and include a few time slots; I'll confirm a 30-minute conversation.",
+      topic: "Coffee chat",
       icon: "calendar",
       tone: "mint",
     },
     {
       label: "Resume Request",
-      detail: "Request a copy of my resume without it being exposed publicly on the site.",
-      href: "mailto:uiucwangjiajun@gmail.com?subject=Resume%20Request&body=Hi%20Jiajun%2C%0A%0AI%27d%20love%20to%20request%20a%20copy%20of%20your%20resume.%0A%0AHere%20is%20some%20context%20on%20my%20interest%20or%20role%3A%0A%0AThanks%21",
+      detail: "For recruiters and hiring managers only. I share my resume with HR and people hiring for a role; please don't request it otherwise.",
+      topic: "Resume request",
       icon: "resume",
       tone: "slate",
     },
   ],
   contacts: [
-    { label: "Email", href: "mailto:uiucwangjiajun@gmail.com", icon: "email" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/jiajun-w-814867365/", icon: "linkedin" },
     { label: "GitHub", href: "https://github.com/JiajunWang23", icon: "github" },
     { label: "LeetCode", href: "https://leetcode.com/u/jiajunw7/", icon: "leetcode" },
@@ -265,7 +267,7 @@ const siteChrome = {
   projectsHeading: "Projects",
   contactHeading: "Connect, coffee chats, and potential opportunities.",
   contactCopy:
-    "If you'd like to connect, you can set up a conversation, request my resume privately, or follow up by email or social media.",
+    "Send me a note here and I'll get back to you by email. Recruiters and hiring managers can request my resume the same way.",
   statusCompleted: "Completed",
   statusProgress: "In Progress",
   openProject: "Open project",
@@ -540,15 +542,90 @@ const renderContact = () => {
   renderList(
     siteData.contactBooking,
     (item) => `
-      <a class="contact-action-card contact-action-card--${item.tone}" href="${item.href}">
+      <button class="contact-action-card contact-action-card--${item.tone}" type="button" data-topic="${item.topic}">
         <span class="contact-action-icon">${iconMarkup[item.icon] || ""}</span>
         <span class="contact-action-copy">
           <strong>${pick(item.label)}</strong>
           <span>${pick(item.detail)}</span>
         </span>
-      </a>`,
+      </button>`,
     "contact-booking",
   );
+};
+
+/* ------------------------------------------------------------------
+   Contact form -> Google Sheet (via Apps Script)
+------------------------------------------------------------------- */
+
+const RESUME_NOTE =
+  "Resumes are shared with recruiters and hiring managers only. Please include your company and the role you're hiring for.";
+
+const setupContactForm = () => {
+  const form = document.getElementById("contact-form");
+  if (!form || form.dataset.bound) return;
+  form.dataset.bound = "true";
+
+  const topic = document.getElementById("contact-topic");
+  const status = document.getElementById("contact-status");
+  const submit = document.getElementById("contact-submit");
+  const organization = form.elements.organization;
+
+  const setStatus = (text, tone = "") => {
+    status.textContent = text;
+    status.dataset.tone = tone;
+  };
+
+  const syncTopic = () => {
+    const isResume = topic.value === "Resume request";
+    organization.required = isResume;
+    form.classList.toggle("is-resume", isResume);
+    if (isResume) setStatus(RESUME_NOTE, "note");
+    else if (status.dataset.tone === "note") setStatus("");
+  };
+  topic.addEventListener("change", syncTopic);
+
+  document.querySelectorAll("[data-topic]").forEach((button) => {
+    button.addEventListener("click", () => {
+      topic.value = button.dataset.topic;
+      syncTopic();
+      form.scrollIntoView({ behavior: "smooth", block: "center" });
+      form.elements.name.focus({ preventScroll: true });
+    });
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+
+    if (!CONTACT_ENDPOINT) {
+      setStatus("The form isn't connected yet. Please reach me on LinkedIn for now.", "error");
+      return;
+    }
+
+    const data = new FormData(form);
+    if (data.get("website")) return; // honeypot: silently drop bots
+    data.append("page", window.location.href);
+
+    submit.disabled = true;
+    setStatus("Sending…");
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        body: new URLSearchParams(data),
+      });
+      const result = await response.json().catch(() => ({ ok: response.ok }));
+      if (!result.ok) throw new Error(result.error || "Request failed");
+      form.reset();
+      syncTopic();
+      setStatus("Thanks! Your message was sent. I'll reply by email.", "success");
+    } catch (error) {
+      setStatus("Something went wrong sending that. Please try again, or reach me on LinkedIn.", "error");
+    } finally {
+      submit.disabled = false;
+    }
+  });
+
+  syncTopic();
 };
 
 const renderSite = () => {
@@ -628,6 +705,7 @@ const onScroll = () => header && header.classList.toggle("is-scrolled", window.s
 window.addEventListener("scroll", onScroll, { passive: true });
 
 renderSite();
+setupContactForm();
 setupMotion();
 onScroll();
 prefersReducedMotion.addEventListener("change", setupMotion);
