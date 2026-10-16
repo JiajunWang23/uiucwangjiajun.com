@@ -1,11 +1,12 @@
 /**
  * Contact form -> Google Sheet
  *
- * Paste this into the Apps Script editor of the Google Sheet that should collect
- * messages (Extensions > Apps Script), then deploy it as a web app.
+ * Standalone Apps Script project (script.new) deployed as a web app.
  * Setup steps: contact-form/README.md
  */
 
+// ID of the Google Sheet that collects messages (the long id in its URL).
+const SHEET_ID = "1VFciqN8T39yqMcLMBAEG-qMEBy0kCG9a2BrVRf0pKtc";
 const SHEET_NAME = "Messages";
 const HEADERS = ["Received", "Name", "Email", "Company / school", "Topic", "Message", "Page", "Status"];
 
@@ -35,8 +36,8 @@ function doPost(e) {
     if (!entry.name || !entry.message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(entry.email)) {
       return json_({ ok: false, error: "Please fill in your name, a valid email, and a message." });
     }
-    if (entry.topic === "Resume request" && !entry.organization) {
-      return json_({ ok: false, error: "Resume requests need a company name." });
+    if (!entry.organization) {
+      return json_({ ok: false, error: "Please include your company or school." });
     }
 
     lock.waitLock(10000);
@@ -70,7 +71,7 @@ function doGet() {
 }
 
 function getSheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SpreadsheetApp.openById(SHEET_ID);
   let sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);

@@ -5,8 +5,10 @@ The site's contact form posts to a Google Apps Script web app, which appends eac
 
 ## Setup (about 5 minutes)
 
-1. Create a new Google Sheet, e.g. **"Website messages"**.
-2. In the sheet: **Extensions → Apps Script**. Delete the starter code and paste in [`Code.gs`](Code.gs). Save.
+1. Create a new Google Sheet, e.g. **"Website messages"**, and copy its ID from the URL
+   (`docs.google.com/spreadsheets/d/<ID>/edit`).
+2. Open [script.new](https://script.new) to create a standalone Apps Script project, paste in [`Code.gs`](Code.gs),
+   set `SHEET_ID` to that ID, and save.
 3. **Deploy → New deployment** → gear icon → **Web app**:
    - Execute as: **Me**
    - Who has access: **Anyone**
@@ -30,4 +32,5 @@ Open the `/exec` URL in a browser to check it's live: it should return `{"ok":tr
   replies straight to the sender.
 - **Spam:** a hidden honeypot field drops most bots; input is length-capped and formula-escaped before it hits
   the sheet.
-- **Resume requests** require a company name, both in the browser and on the server.
+- **Company / school** is required, both in the browser and on the server. Resume requests also show a
+  recruiters-only note.
