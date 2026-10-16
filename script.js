@@ -161,8 +161,13 @@ const siteData = {
           status: "completed",
           cover: "violet",
           description:
-            "Free AI-powered resume review and parsing web app that helps candidates improve applications with clearer feedback and faster iteration.",
-          tags: ["AI", "Resume Parsing", "Web App", "Product"],
+            "AI-powered resume analysis platform that scores resumes against job descriptions and proposes sentence-level revisions.",
+          highlights: [
+            "Built and shipped an AI resume-analysis web app in TypeScript and React that scores resumes against job descriptions.",
+            "Integrated the Gemini API with custom scoring logic and prompts for sentence-level revisions that avoid unsupported metrics.",
+            "Developed the upload-to-feedback-to-revision workflow connecting PDF extraction, AI analysis, and suggested edits, with error handling.",
+          ],
+          tags: ["React", "TypeScript", "Vite", "Gemini API", "PDF Parsing", "Prompt Engineering"],
           href: "https://pushresume.net",
         },
         {
@@ -187,8 +192,14 @@ const siteData = {
           status: "completed",
           cover: "blue",
           description:
-            "Flask and React dashboard processing 100K+ daily events with WebSocket updates, Redis pub/sub, and PostgreSQL aggregation.",
-          tags: ["Python", "Flask", "React", "Redis", "PostgreSQL", "Docker", "Kubernetes"],
+            "Flask/React dashboard streaming live Wikipedia edits to 1,000+ clients, with Redis pub/sub fan-out, indexed PostgreSQL rollups, and Kubernetes autoscaling.",
+          highlights: [
+            "Built a Flask/React dashboard streaming live Wikipedia edits over WebSocket, with PostgreSQL storage and Redis pub/sub fan-out.",
+            "Cut p95 delivery latency from 353 ms to 87 ms across 1,000 simulated clients by serializing once per source and batching sends for 10 ms.",
+            "Reduced average aggregation latency from 273 ms to 5.5 ms over 5M+ events with BRIN and B-tree indexes plus per-minute rollup tables.",
+            "Sustained ~2.8K events/sec in burst ingest tests with bounded per-client queues, and configured Kubernetes autoscaling from 2 to 10 pods.",
+          ],
+          tags: ["Python", "Flask", "React", "WebSocket", "Redis", "PostgreSQL", "Docker", "Kubernetes"],
           href: "https://realtime-analytics-dashboard.com",
         },
         {
