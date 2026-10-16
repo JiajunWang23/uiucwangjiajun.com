@@ -568,7 +568,6 @@ const setupContactForm = () => {
   const topic = document.getElementById("contact-topic");
   const status = document.getElementById("contact-status");
   const submit = document.getElementById("contact-submit");
-  const organization = form.elements.organization;
 
   const setStatus = (text, tone = "") => {
     status.textContent = text;
@@ -577,7 +576,6 @@ const setupContactForm = () => {
 
   const syncTopic = () => {
     const isResume = topic.value === "Resume request";
-    organization.required = isResume;
     form.classList.toggle("is-resume", isResume);
     if (isResume) setStatus(RESUME_NOTE, "note");
     else if (status.dataset.tone === "note") setStatus("");
