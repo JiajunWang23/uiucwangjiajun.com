@@ -215,8 +215,15 @@ const siteData = {
           status: "completed",
           cover: "gold",
           description:
-            "Scalable event-driven platform exposing GraphQL APIs over Kafka streams, MongoDB metadata, and automated CI/CD deployment.",
-          tags: ["Java", "Spring Boot", "Kafka", "MongoDB", "GraphQL", "Jenkins"],
+            "Event-driven platform exposing GraphQL APIs over Kafka streams: clients register named streams, publish events, query and aggregate history in MongoDB, and subscribe to live feeds over GraphQL WebSocket.",
+          highlights: [
+            "Provisioned one Kafka topic plus a dead-letter topic per stream, consumed by a single pattern listener so new streams flow without a redeploy; acknowledged publishes (acks=all, idempotent producer) return the real partition and offset.",
+            "Made consumption idempotent by upserting on producer-assigned event ids, with retry-then-dead-letter handling and a byte-for-byte DLQ path for poison messages that fail deserialization.",
+            "Served paged history and stats from compound MongoDB indexes, batch-resolved per-stream counts with a single $group aggregation to avoid N+1, and pushed live events through a multicast Reactor sink that drops slow subscribers.",
+            "Built a Jenkins multibranch pipeline (unit + Testcontainers integration tests, JaCoCo, multi-stage Docker image to GHCR, SSH deploy, smoke test) and a Kubernetes manifest with probes, Prometheus metrics, and an HPA scaling 2 to 8 replicas.",
+          ],
+          tags: ["Java 21", "Spring Boot", "Spring for GraphQL", "Kafka", "MongoDB", "Testcontainers", "Jenkins", "Docker", "Kubernetes"],
+          href: "https://github.com/JiajunWang23/eventstream-platform",
         },
       ],
     },
