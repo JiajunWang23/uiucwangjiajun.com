@@ -145,7 +145,7 @@ const siteData = {
           status: "completed",
           cover: "mint",
           description:
-            "Production-style agent runtime: a bounded LangGraph ReAct loop with persistent checkpoints, a streaming React UI over multiplexed WebSockets, and MCP-exposed admin tools gated by SpiceDB.",
+            "Agent that carries out administrative work on a person's behalf: a bounded LangGraph ReAct loop with per-node checkpoints that survive a dropped connection or a killed server, a React console streaming over multiplexed WebSockets with replay, and 22 MCP admin tools authorized per caller in SpiceDB.",
           highlights: [
             "Built a LangGraph agent runtime with a bounded ReAct loop for multi-step tool calls, capped at a 10-iteration limit to control usage.",
             "Implemented persistent state checkpoints across 5 workflow stages, enabling interrupted workflows to resume from saved progress.",
@@ -176,8 +176,14 @@ const siteData = {
           status: "completed",
           cover: "coral",
           description:
-            "Python NLP pipeline analyzing 1K+ job postings to extract skill gaps between media industry needs and university training.",
-          tags: ["Python", "NLP", "Data Analysis", "Preprocessing"],
+            "Python NLP pipeline that reads 1,200+ media-industry job postings, extracts the skills employers ask for, and measures them against a university media curriculum to produce a ranked skill-gap report with charts.",
+          highlights: [
+            "Built a taxonomy of 77 canonical skills and ~300 aliases across 10 categories, matched with longest-match-first, boundary-aware regex so overlapping terms are claimed once.",
+            "Scored each skill as demand (share of postings) minus credit-weighted curriculum coverage, classified gaps by quadrant, and tracked year-over-year growth to flag emerging and declining skills.",
+            "Surfaced 19 critical gaps (e.g. generative AI tools in 49% of postings vs ~1% of curriculum) and a per-role readiness index ranging from 8% (SEO Specialist) to 58% (Multimedia Journalist).",
+            "Added TF-IDF n-gram discovery to queue uncovered terms for taxonomy review, an Adzuna API fetcher for live postings, six matplotlib charts, and a 12-test suite.",
+          ],
+          tags: ["Python", "pandas", "scikit-learn", "NLP", "matplotlib", "pytest"],
           href: "https://github.com/JiajunWang23/media-talent-analysis",
         },
       ],
