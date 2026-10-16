@@ -252,7 +252,7 @@ const siteData = {
     { label: "GitHub", href: "https://github.com/JiajunWang23", icon: "github" },
     { label: "LeetCode", href: "https://leetcode.com/u/jiajunw7/", icon: "leetcode" },
   ],
-  lastUpdated: "Last updated October 15, 2026",
+  lastUpdated: "Last updated October 16, 2026",
 };
 
 const siteChrome = {
