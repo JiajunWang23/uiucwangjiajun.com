@@ -980,6 +980,26 @@ a.project-card:focus-visible {
   line-height: 1.65;
 }
 
+.project-highlights {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.project-highlights li + li {
+  margin-top: 0.3rem;
+}
+
+.project-highlights li::marker {
+  color: var(--card-accent, var(--accent));
+}
+
+.project-card--featured {
+  grid-column: 1 / -1;
+}
+
 .project-footer {
   display: flex;
   align-items: flex-end;
