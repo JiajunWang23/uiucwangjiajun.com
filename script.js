@@ -36,7 +36,6 @@ const siteData = {
       logo: "./assets/aws.svg",
       logoAlt: "AWS logo",
     },
-    { company: "Aleoga", role: "Data Scientist Intern", mark: "AL", tone: "blue" },
   ],
   homeIntro:
     "Hi there 👋. I am Jiajun Wang, a software engineer who builds backend systems where data, cloud infrastructure, and intelligent tools meet.",
@@ -80,7 +79,7 @@ const siteData = {
     "PyTorch",
   ],
   experienceIntro:
-    "Internships across cloud infrastructure, LLM tooling, and data science — each one focused on shipping systems that are measurable, maintainable, and pleasant for other engineers to use.",
+    "Internships across cloud infrastructure and LLM tooling — each one focused on shipping systems that are measurable, maintainable, and pleasant for other engineers to use.",
   experience: [
     {
       company: "ByteDance (TikTok)",
@@ -102,17 +101,6 @@ const siteData = {
         "Engineered a distributed router orchestration service replacing manual lab router testing workflows.",
         "Designed REST APIs for provisioning and retrieving emulated routers on demand through automated CI/CD pipelines.",
         "Persisted router lifecycle metadata in DynamoDB, streamlining test setup and saving 30+ minutes per workflow.",
-      ],
-    },
-    {
-      company: "Aleoga",
-      role: "Data Scientist Intern",
-      period: "Apr 2024 – Jul 2024",
-      stack: ["Python", "Matplotlib", "Seaborn", "Data Analysis"],
-      bullets: [
-        "Analyzed Instagram, Facebook, and Twitter engagement metrics to identify growth trends and campaign opportunities.",
-        "Built Python visualizations for interaction quality and advertising effectiveness across social platforms.",
-        "Supported a 25% active-user increase, 18% advertising ROI improvement, and 12% marketing cost reduction.",
       ],
     },
   ],
