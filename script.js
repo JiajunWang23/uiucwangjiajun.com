@@ -10,7 +10,7 @@ const siteData = {
   heroName: "Ellie W",
   heroEyebrow: "Software Engineer · Backend, Cloud & AI Tools",
   heroStatement: "I build backend systems where data, cloud infrastructure, and intelligent tools meet.",
-  heroSubtitle: "B.S. in Statistics & Computer Science @ UIUC",
+  heroSubtitle: "B.S. in Statistics, Minor in Computer Science @ UIUC",
   heroSubtitleHref: "https://stat.illinois.edu/",
   heroLocation: "Chicago, IL",
   portrait: {
