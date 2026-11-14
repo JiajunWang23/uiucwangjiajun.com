@@ -23,6 +23,13 @@ const siteData = {
   ],
   industryExperience: [
     {
+      company: "Monid",
+      role: "Growth",
+      href: "https://monid.ai",
+      logo: "./assets/monid-astrid-blue.svg",
+      logoAlt: "Monid logo",
+    },
+    {
       company: "ByteDance (TikTok)",
       role: "Software Engineering Intern",
       href: "https://www.tiktok.com/",
