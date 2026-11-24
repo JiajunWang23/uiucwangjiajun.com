@@ -18,7 +18,7 @@ const siteData = {
     fallback: "JW",
   },
   heroLinks: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/ellie-w-814867365/", icon: "linkedin" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/ellie-w-uiuc/", icon: "linkedin" },
     { label: "GitHub", href: "https://github.com/JiajunWang23", icon: "github" },
   ],
   industryExperience: [
@@ -236,7 +236,7 @@ const siteData = {
     },
   ],
   contacts: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/ellie-w-814867365/", icon: "linkedin" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/ellie-w-uiuc/", icon: "linkedin" },
     { label: "GitHub", href: "https://github.com/JiajunWang23", icon: "github" },
     { label: "LeetCode", href: "https://leetcode.com/u/jiajunw7/", icon: "leetcode" },
   ],
