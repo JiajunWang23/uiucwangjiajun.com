@@ -1,4 +1,4 @@
-# Ellie W
+# Ellie Wang
 
 Personal portfolio website for `uiucwangjiajun.com`.
 

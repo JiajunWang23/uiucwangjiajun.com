@@ -7,7 +7,7 @@
 const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbwcsVvUb77HvcbJWkMH2geqa-35pisxfdAbQ5MmvZB1NCNQnnbOMIa7qeES0eqLBxh6yg/exec";
 
 const siteData = {
-  heroName: "Ellie W",
+  heroName: "Ellie Wang",
   heroEyebrow: "Software Engineer · LinkedIn Influencer",
   heroStatement: "I build backend systems where data, cloud infrastructure, and intelligent tools meet.",
   heroSubtitle: "B.S. in Statistics, Minor in Computer Science @ UIUC",
@@ -38,7 +38,7 @@ const siteData = {
     },
   ],
   homeIntro:
-    "Hi there 👋. I am Ellie W, a software engineer and LinkedIn influencer with 6,000+ followers. I build backend systems where data, cloud infrastructure, and intelligent tools meet, and I write honest stories about breaking into tech.",
+    "Hi there 👋. I am Ellie Wang, a software engineer and LinkedIn influencer with 6,000+ followers. I build backend systems where data, cloud infrastructure, and intelligent tools meet, and I write honest stories about breaking into tech.",
   homeAbout: [
     'I am actively seeking <span class="focus-emphasis">Software Engineer</span> and <span class="focus-emphasis">AI Engineer</span> roles across:<span class="about-focus-list"><span><span class="focus-role">Backend &amp; distributed systems:</span> API design, service orchestration, event-driven architectures, and the test automation that keeps them reliable.</span><span><span class="focus-role">Real-time data platforms:</span> Kafka streaming, Redis pub/sub, WebSocket delivery, and indexed analytical storage for dashboards that stay live.</span><span><span class="focus-role">AI-powered tooling:</span> LLM agents, tool-calling workflows, natural-language data access, and analytics automation that engineers actually enjoy using.</span></span>',
     'Recently I built LLM analytics workflows at ByteDance and Java/Spring Boot router orchestration at AWS. I also write about engineering, job searching, and building in public on my <a href="/blog">blog</a>.',
@@ -244,9 +244,9 @@ const siteData = {
 };
 
 const siteChrome = {
-  documentTitle: "Ellie W | Software Engineer",
+  documentTitle: "Ellie Wang | Software Engineer",
   metaDescription:
-    "Ellie W - software engineer focused on backend systems, cloud infrastructure, real-time data, and AI-powered tools.",
+    "Ellie Wang - software engineer focused on backend systems, cloud infrastructure, real-time data, and AI-powered tools.",
   nav: { home: "Home", experience: "Experience", projects: "Projects", blog: "Blog", contact: "Contact" },
   aboutHeading: "About",
   educationHeading: "Education",
