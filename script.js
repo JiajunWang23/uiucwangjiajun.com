@@ -38,7 +38,7 @@ const siteData = {
     },
   ],
   homeIntro:
-    "Hi there 👋. I am Ellie W, a software engineer and LinkedIn influencer with 5,600+ followers. I build backend systems where data, cloud infrastructure, and intelligent tools meet, and I write honest stories about breaking into tech.",
+    "Hi there 👋. I am Ellie W, a software engineer and LinkedIn influencer with 6,000+ followers. I build backend systems where data, cloud infrastructure, and intelligent tools meet, and I write honest stories about breaking into tech.",
   homeAbout: [
     'I am actively seeking <span class="focus-emphasis">Software Engineer</span> and <span class="focus-emphasis">AI Engineer</span> roles across:<span class="about-focus-list"><span><span class="focus-role">Backend &amp; distributed systems:</span> API design, service orchestration, event-driven architectures, and the test automation that keeps them reliable.</span><span><span class="focus-role">Real-time data platforms:</span> Kafka streaming, Redis pub/sub, WebSocket delivery, and indexed analytical storage for dashboards that stay live.</span><span><span class="focus-role">AI-powered tooling:</span> LLM agents, tool-calling workflows, natural-language data access, and analytics automation that engineers actually enjoy using.</span></span>',
     'Recently I built LLM analytics workflows at ByteDance and Java/Spring Boot router orchestration at AWS. I also write about engineering, job searching, and building in public on my <a href="/blog">blog</a>.',
